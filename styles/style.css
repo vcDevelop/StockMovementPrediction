@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background: #1e1e2f; /* Dark background */
+    color: #f3f4f7; /* Light text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    width: 80%;
+    max-width: 1200px;
+}
+.box {
+    background: #292b3b; /* Dark card background */
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #f3f4f7;
+}
+.form-box {
+    width: 450px;
+    margin: 10px;
+}
+.form-box header {
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3c3f54; /* Lighter border */
+    color: #42d1f5; /* Accent color */
+}
+.form-box form .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+.form-box form .input input {
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #555; /* Subtle border */
+    outline: none;
+    background: #2e2f47; /* Dark input background */
+    color: #e0e0e0;
+}
+.btn {
+    height: 40px;
+    background-color: #ff7f50; /* Button color */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+.btn:hover {
+    background-color: #ff5733; /* Button hover effect */
+}
+.submit {
+    width: 100%;
+}
+.links {
+    margin-top: 15px;
+    text-align: center;
+}
+.links a {
+    color: #7ad0f5; /* Link color */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.links a:hover {
+    color: #42d1f5; /* Link hover effect */
+}
+.message {
+    text-align: center;
+    background: #f9eded; /* Alert background */
+    padding: 15px;
+    border: 1px solid #d67d7d; /* Alert border */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #d67d7d;
+}

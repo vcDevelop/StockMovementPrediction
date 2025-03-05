@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Predictor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    body {
+      background-image: url('bull.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .quote {
+      color: #f3f3f3;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .quote p {
+      margin: 5px 0;
+      font-size: 1.3em;
+    }
+
+    .search-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+
+    #searchbox {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    .icon {
+      background-color: #d5bda4; /* Updated color */
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 50%; /* Adjusted width */
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .icon:hover {
+      background-color: #b89d87;
+    }
+
+    /* Center the button */
+    .search-input form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Autocomplete Box Styling */
+    .autocom-box {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none; /* Hidden until suggestions are shown */
+    }
+
+    .autocom-box div {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .autocom-box div:hover {
+      background-color: #e3d5ca;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .quote p {
+        font-size: 1em;
+      }
+
+      #searchbox,
+      .icon {
+        font-size: 0.9em;
+        width: 80%; /* Reduce width for smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="quote">
+      <p style="font-size: 1.2em; font-weight: bold; margin-bottom: 15px; color:#eef1ed;">
+        Please search using the ticker name, such as <span style="color: #63c132;">TCS.NS</span> or <span style="color: #63c132;">SBI.NS</span>.
+      </p>
+    </div>    
+    <div class="search-input">
+      <form method="get" name="form" action="Charts.php">
+        <input id="searchbox" type="text" name="data" placeholder="Type to search..." oninput="showSuggestions(this.value)">
+        <input class="icon" type="submit" value="GO">
+      </form>
+      <div class="autocom-box" id="suggestion-box"></div>
+    </div>
+  </div>
+
+  <script>
+    function showSuggestions(value) {
+      
+      const suggestions = [ "BRITANNIA.NS",
+    "INDUSINDBK.NS",
+    "COALINDIA.NS",
+    "WIPRO.NS",
+    "BHARTIARTL.NS",
+    "ICICIBANK.NS",
+    "TATASTEEL.NS",
+    "RELIANCE.NS",
+    "TECHM.NS",
+    "BAJAJ-AUTO.NS",
+    "HDFCLIFE.NS",
+    "TATACONSUM.NS",
+    "BAJFINANCE.NS",
+    "LT.NS",
+    "HINDALCO.NS",
+    "TCS.NS",
+    "NESTLEIND.NS",
+    "NTPC.NS",
+    "ULTRACEMCO.NS",
+    "SHREECEM.NS",
+    "CIPLA.NS",
+    "TITAN.NS",
+    "HEROMOTOCO.NS",
+    "KOTAKBANK.NS",
+    "BAJAJFINSV.NS",
+    "ITC.NS",
+    "MARUTI.NS",
+    "APOLLOHOSP.NS",
+    "MM.NS",
+    "ONGC.NS",
+    "SBIN.NS"];
+      const suggestionBox = document.getElementById('suggestion-box');
+
+      // Clear previous suggestions
+      suggestionBox.innerHTML = '';
+
+      if (value) {
+        const filteredSuggestions = suggestions.filter(suggestion => 
+          suggestion.toLowerCase().includes(value.toLowerCase())
+        );
+
+        filteredSuggestions.forEach(suggestion => {
+          const div = document.createElement('div');
+          div.textContent = suggestion;
+          div.onclick = () => {
+            document.getElementById('searchbox').value = suggestion;
+            suggestionBox.style.display = 'none'; // Hide after selection
+          };
+          suggestionBox.appendChild(div);
+        });
+
+        suggestionBox.style.display = filteredSuggestions.length ? 'block' : 'none';
+      } else {
+        suggestionBox.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
